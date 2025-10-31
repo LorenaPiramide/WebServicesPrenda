@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{styles.css}"> <!-- arreglar -->
+</head>
+<body>
+    <div th:replace="/fragments/nav"></div>
+
+    <h1>Prendas</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Tipo de prenda</th>
+            <th>Nª de ejemplares</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="prenda : ${prendas}">
+            <td th:text="${prenda.marca}">Nombre</td>
+            <td th:text="${prenda.tipoPrenda}">TipoPrenda</td>
+            <!--<td th:text="${prenda.numEjemplares}">0</td>-->
+            <td>
+                <!--<form th:action="@{/prendas/{marca}(marca=${prenda.marca})}" method="post" style="display:inline;">
+                    <input type="hidden" name="prendaActual" th:value="${prendaActual.marca}" />
+                    <button type="submit" style="background:none; border:none; color:blue; text-decoration:underline; cursor:pointer;">Ver más</button>
+                </form> -->
+                <a th:href="@{/prendas/{marca}(marca=${prenda.marca})}">Ver más</a> <!-- se le pasa la url de controlador + le decirmos que le pasamos la id que es mueble.id-->
+                <!-- no sé si falla como prendas o le tengo que poner ejemplares-->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

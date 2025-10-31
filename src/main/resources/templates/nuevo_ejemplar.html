@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{styles.css}"> <!-- arreglar -->
+    <title>Nuevo ejemplar</title>
+</head>
+<body>
+    <div th:replace="/fragments/nav"></div>
+    <h1>Nuevo ejemplar</h1>
+    <form action="/ejemplares/nuevo" method="post">
+
+        <label for="prenda">Prenda:</label>
+        <select name="tipoPrenda" id="prenda">
+            <option th:each="prenda : ${prenda}" th:value="${prenda.marca}" th:text="${prenda.marca}"></option>
+        </select>
+
+        <label for="color">Tipo de prenda:</label>
+        <select name="color" id="color">
+            <option th:each="prenda : ${prendas}" th:value="${prenda.color}" th:text="${prenda.color}"></option>
+        </select>
+
+        <label for="talla">Tipo de prenda:</label>
+        <select name="talla" id="talla">
+            <option th:each="prenda : ${prendas}" th:value="${prenda.color}" th:text="${prenda.color}"></option>
+        </select>
+
+        <input name="stock" type="text" placeholder="Cantidad disponible">
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

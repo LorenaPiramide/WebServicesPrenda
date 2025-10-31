@@ -1,0 +1,223 @@
+/* ================================
+   Estilos generales - Tienda de Ropa
+   ================================ */
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== CABECERA ====== */
+header {
+  background-color: #00b894;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ====== NAVEGACIÓN ====== */
+nav {
+  margin-top: 0.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 1rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+nav a:hover {
+  opacity: 0.8;
+}
+
+/* ====== CONTENIDO PRINCIPAL ====== */
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+main h2 {
+  text-align: center;
+  color: #00b894;
+  margin-bottom: 1.5rem;
+}
+
+/* ====== TABLA DE PRENDAS ====== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+thead {
+  background-color: #00b894;
+  color: white;
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* Alterna colores de filas */
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* ==========================
+   ENLACES EN TABLAS
+========================== */
+
+table a {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: #00b894;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+table a:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.03);
+}
+
+/* ====== MENSAJE DE VACÍO ====== */
+div p {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  background-color: #fff9c4;
+  border: 1px solid #ffeb3b;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  nav a {
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  main {
+    padding: 1rem;
+  }
+
+  th, td {
+    padding: 0.5rem;
+  }
+}
+
+/* ================================
+   FORMULARIOS - Tienda de Ropa
+   ================================ */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+label {
+  font-weight: 600;
+  color: #00b894;
+  margin-bottom: 0.25rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+  background-color: #fafafa;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #00b894;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2);
+  background-color: #fff;
+}
+
+/* ====== BOTONES ====== */
+button,
+input[type="submit"] {
+  background-color: #00b894;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-size: 1rem;
+  align-self: center;
+  min-width: 150px;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #009974;
+  transform: scale(1.03);
+}
+
+/* ====== PLACEHOLDERS ====== */
+::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* ====== AGRUPACIÓN VISUAL ====== */
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 600px) {
+  form {
+    width: 100%;
+    padding: 0 1rem;
+  }
+}

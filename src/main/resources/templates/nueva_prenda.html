@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{styles.css}"> <!-- arreglar -->
+</head>
+<body>
+    <div th:replace="/fragments/nav"></div>
+    <h1>Nueva prenda</h1>
+    <form action="/prendas/nueva" method="post">
+        <input name="marca" type="text" placeholder="Marca">
+
+        <label for="tipoPrenda">Tipo de prenda:</label>
+        <select name="tipoPrenda" id="tipoPrenda">
+            <option th:each="tipo : ${tipoPrendas}" th:value="${tipo}" th:text="${tipo}"></option>
+        </select>
+
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+</html>

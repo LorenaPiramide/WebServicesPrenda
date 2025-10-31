@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{styles.css}"> <!-- arreglar -->
+    <title>Ejemplares disponibles</title>
+</head>
+<body>
+    <div th:replace="/fragments/nav"></div>
+
+    <h1 th:text="${prenda.marca}"></h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Color</th>
+            <th>Talla</th>
+            <th>Stock</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr th:each="ejemplar : ${ejemplares}">
+            <td th:text="${ejemplar.marca.color}">Color</td>
+            <td th:text="${ejemplar.marca.talla}">M</td>
+            <td th:text="${ejemplar.marca.stock}">0</td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>
