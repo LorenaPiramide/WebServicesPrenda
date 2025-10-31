@@ -17,8 +17,8 @@ public class DAOPrendasMySQL implements DAOPrendas {
         List<Prenda> prendas = new ArrayList<>();
 
         try {
-            //String query = "SELECT *, (SELECT COUNT(*) FROM ejemplares e WHERE e.prenda = p.marca) AS numPrendas FROM prendas p";
-            String query = "SELECT * FROM prendas";
+            String query = "SELECT *, (SELECT COUNT(*) FROM ejemplares e WHERE e.prenda = p.marca) AS numPrendas FROM prendas p";
+            //String query = "SELECT * FROM prendas";
             PreparedStatement ps = DBConnection.getInstance().prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -26,11 +26,12 @@ public class DAOPrendasMySQL implements DAOPrendas {
                         rs.getString("marca"),
                         TipoPrenda.valueOf(rs.getString("tipoPrenda"))
                 );
-                // todo si pongo la consulta de count, al pasarlo a rest, no funciona, si pones solo mostrar las prendas y nada más, sale bien
-//                int numPrendas = rs.getInt("numPrendas");
-//                for (int i = 0; i < numPrendas; i++) {
-//                    prenda.addEjemplar(new Ejemplar());
-//                }
+                // En rest, al ver la lista de prendas, no sale el número, está bien así porque no puede sacar el numero
+                // directamente, para arreglarlo tendría que poner un nuevo atributo en la clase como int numEjemplares
+                int numPrendas = rs.getInt("numPrendas");
+                for (int i = 0; i < numPrendas; i++) {
+                    prenda.addEjemplar(new Ejemplar());
+                }
                 prendas.add(prenda);
             }
         } catch (SQLException e) {

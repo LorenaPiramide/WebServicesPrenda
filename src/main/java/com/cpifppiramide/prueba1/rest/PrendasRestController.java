@@ -12,13 +12,13 @@ import java.util.List;
 @RestController
 public class PrendasRestController {
     @GetMapping("/api/prendas")
-    List<Prenda> getPrendas() {
+    public List<Prenda> getPrendas() {
         List<Prenda> prendas = DAOFactory.getInstance().getDaoPrendas().lista();
         return prendas;
     }
 
     @GetMapping("/api/prendas/{marca}")
-    Prenda getPrendasMarca(@PathVariable String marca) {
+    public Prenda getPrendasMarca(@PathVariable String marca) {
         Prenda prenda = DAOFactory.getInstance().getDaoPrendas().ver(marca);
         List<Ejemplar> ejemplares = DAOFactory.getInstance().getDaoEjemplares().get(prenda);
         prenda.setEjemplares(ejemplares);

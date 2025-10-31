@@ -40,16 +40,20 @@ public class PrendaController {
 
     @GetMapping("/prendas/nueva")
     String crearPrendaForm(Model model) {
+//        Se puede hacer así también:
+//        List<String> tiposDePrenda = new ArrayList<>();
+//        for (TipoPrenda tipo : TipoPrenda.values()){
+//            tiposDePrenda.add(tipo.toString());
+//        }
+//        model.addAttribute("tipos", tiposDePrenda);
         model.addAttribute("tipoPrendas", TipoPrenda.values());
         return "nueva_prenda";
     }
 
-    // todo, no funciona porque prenda es null
     @PostMapping("/prendas/nueva")
-    String guardarPrenda(@RequestParam String marca, TipoPrenda tipoPrenda) {
-
-        Prenda prenda = new Prenda(marca, tipoPrenda);
-
+    // Había que poner tipoPrenda como String, yo lo pasaba como TipoPrenda, por eso no iba
+    String guardarPrenda(@RequestParam String marca, @RequestParam String tipoPrenda) {
+        Prenda prenda = new Prenda(marca, TipoPrenda.valueOf(tipoPrenda));
         DAOFactory.getInstance().getDaoPrendas().inserta(prenda);
         return "redirect:/prendas";
     }

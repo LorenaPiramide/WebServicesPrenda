@@ -1,7 +1,6 @@
 package com.cpifppiramide.prueba1.dao.ejemplares;
 
 import com.cpifppiramide.prueba1.context.DBConnection;
-import com.cpifppiramide.prueba1.dao.DAOFactory;
 import com.cpifppiramide.prueba1.entidades.Color;
 import com.cpifppiramide.prueba1.entidades.Ejemplar;
 import com.cpifppiramide.prueba1.entidades.Prenda;
@@ -17,17 +16,14 @@ public class DAOEjemplaresMySQL implements DAOEjemplares {
     @Override
     public List<Ejemplar> get(Prenda prenda) {
         List<Ejemplar> ejemplares = new ArrayList<>();
-
         try {
             String query = "SELECT * FROM ejemplares WHERE prenda = ?";
             PreparedStatement ps = DBConnection.getInstance().prepareStatement(query);
             ps.setString(1, prenda.getMarca());
-            //Prenda prendaSQL = new Prenda(prenda.getMarca(), null);
-            Prenda prendaSQL = DAOFactory.getInstance().getDaoPrendas().ver(prenda.getMarca());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Ejemplar ejemplar = new Ejemplar(
-                        prendaSQL,
+                        prenda,
                         Color.valueOf(rs.getString("color")),
                         Talla.valueOf(rs.getString("talla")),
                         rs.getInt("stock")
@@ -42,16 +38,16 @@ public class DAOEjemplaresMySQL implements DAOEjemplares {
 
     @Override
     public void inserta(Ejemplar ejemplar) {
-//        try {
-//            String query = "INSERT INTO ejemplares (prenda, color, talla, stock) VALUES (?, ?, ?, ?)";
-//            PreparedStatement ps = DBConnection.getInstance().prepareStatement(query);
-//            ps.setString(1, ejemplar.getPrenda());
-//            ps.setString(2, String.valueOf(ejemplar.getColor()));
-//            ps.setString(3, String.valueOf(ejemplar.getTalla()));
-//            ps.setString(2, String.valueOf(ejemplar.getStock()));
-//            ps.execute();
-//        } catch (SQLException e) {
-//            throw new RuntimeException();
-//        }
+        try {
+            String query = "INSERT INTO ejemplares (prenda, color, talla, stock) VALUES (?, ?, ?, ?)";
+            PreparedStatement ps = DBConnection.getInstance().prepareStatement(query);
+            ps.setString(1, ejemplar.getPrenda().getMarca()); // Pasamos la marca, no el ejemplar
+            ps.setString(2, String.valueOf(ejemplar.getColor()));
+            ps.setString(3, String.valueOf(ejemplar.getTalla()));
+            ps.setInt(4, ejemplar.getStock());
+            ps.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
     }
 }
